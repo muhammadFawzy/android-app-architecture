@@ -61,6 +61,10 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
 
 
                 })
+
+        swipeRefresh.setOnRefreshListener {
+            viewmModel.getMenus(1)
+        }
     }
 
     private fun initObservables() {

@@ -9,8 +9,8 @@ import com.elmenus.app.R
 import com.elmenus.app.databinding.MenuItemBinding
 import com.elmenus.app.model.Menu
 
-class MenuAdapter(listener: ItemClickListener) : RecyclerView.Adapter<MenuAdapter.Menuholder>() {
-    var listener: ItemClickListener = listener
+class MenuAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<MenuAdapter.Menuholder>() {
+    var menus = listOf<Menu>()
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): Menuholder {
@@ -21,26 +21,28 @@ class MenuAdapter(listener: ItemClickListener) : RecyclerView.Adapter<MenuAdapte
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return menus!!.size
     }
 
     override fun onBindViewHolder(holder: Menuholder, position: Int) {
-        holder.binding?.model = Menu(0, "Burger"
-                , "https://s3.amazonaws.com/elmenusV3/Photos/Normal/i4g2ehuqrvuw61or.jpg"
-                , "any thing")
+        holder.binding?.model = menus!![position]
+    }
+
+    fun addAll(menus: List<Menu>?) {
+        this.menus = menus!!
+        notifyDataSetChanged()
+
     }
 
 
-   inner class Menuholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class Menuholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding: MenuItemBinding? = null
 
         init {
             binding = DataBindingUtil.bind(itemView)
 
             itemView.setOnClickListener {
-                listener.onItemClick( Menu(0, "Burger"
-                        , "https://s3.amazonaws.com/elmenusV3/Photos/Normal/i4g2ehuqrvuw61or.jpg"
-                        , "any thing"),binding?.imageView!!)
+                listener.onItemClick(menus!![adapterPosition], binding?.imageView!!)
 
             }
         }

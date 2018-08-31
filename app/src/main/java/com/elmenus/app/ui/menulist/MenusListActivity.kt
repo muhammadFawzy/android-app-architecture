@@ -1,5 +1,6 @@
 package com.elmenus.app.ui.menulist
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -27,9 +28,11 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_menus_list)
         initData()
+        initObservables()
 
 
     }
+
 
     private fun initData() {
         viewmModel = ViewModelProviders.of(this).get(MenuViewModel::class.java)
@@ -38,7 +41,16 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
         recycler_menus.layoutManager = LinearLayoutManager(this, VERTICAL, false)
         recycler_menus.adapter = adapter
 
+        viewmModel.getMenus(1)
 
+
+    }
+
+    private fun initObservables() {
+        viewmModel.menus.observe(this, Observer { menus ->
+            adapter.addAll(menus)
+
+        })
     }
 
     override fun onItemClick(menu: Menu, shared: ImageView) {

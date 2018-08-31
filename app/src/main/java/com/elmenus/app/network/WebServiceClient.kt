@@ -34,7 +34,8 @@ object WebServiceClient {
                 .addInterceptor(interceptor)
                 .connectionSpecs(Arrays.asList(
                         ConnectionSpec.MODERN_TLS,
-                        ConnectionSpec.COMPATIBLE_TLS))
+                        ConnectionSpec.COMPATIBLE_TLS
+                        , ConnectionSpec.CLEARTEXT))
                 .followRedirects(true)
                 .followSslRedirects(true)
                 .retryOnConnectionFailure(true)

@@ -4,6 +4,7 @@ import android.databinding.BindingAdapter
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.elmenus.app.R
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 /**
@@ -18,6 +19,8 @@ fun ImageView.setCornerImageUrl(url: String?) {
         if (!url.isEmpty()) {
 
             Glide.with(context).load(url)
+                    .apply(RequestOptions().placeholder(R.drawable.food_placeholder))
+                    .apply(RequestOptions().error(R.drawable.food_placeholder))
                     .apply(RequestOptions.bitmapTransform
                     (RoundedCornersTransformation(50, 10)))
                     .into(this)

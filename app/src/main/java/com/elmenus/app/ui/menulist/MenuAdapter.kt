@@ -10,26 +10,27 @@ import com.elmenus.app.databinding.MenuItemBinding
 import com.elmenus.app.model.Menu
 
 class MenuAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<MenuAdapter.Menuholder>() {
-    var menus = listOf<Menu>()
+    var menus = arrayListOf<Menu>()
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): Menuholder {
-        var root = LayoutInflater.from(viewGroup.context).inflate(R.layout.menu_item
+        val root = LayoutInflater.from(viewGroup.context).inflate(R.layout.menu_item
                 , viewGroup, false)
         return Menuholder(root)
 
     }
 
     override fun getItemCount(): Int {
-        return menus!!.size
+        return menus.size
     }
 
     override fun onBindViewHolder(holder: Menuholder, position: Int) {
-        holder.binding?.model = menus!![position]
+        holder.binding?.model = menus[position]
     }
 
     fun addAll(menus: List<Menu>?) {
-        this.menus = menus!!
+        this.menus.addAll(menus!!)
+        this.menus.distinctBy { it.id }
         notifyDataSetChanged()
 
     }
@@ -42,7 +43,7 @@ class MenuAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<MenuAd
             binding = DataBindingUtil.bind(itemView)
 
             itemView.setOnClickListener {
-                listener.onItemClick(menus!![adapterPosition], binding?.imageView!!)
+                listener.onItemClick(menus[adapterPosition], binding?.imageView!!)
 
             }
         }

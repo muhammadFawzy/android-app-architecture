@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout.VERTICAL
@@ -15,6 +16,7 @@ import com.elmenus.app.R
 import com.elmenus.app.databinding.ActivityMenusListBinding
 import com.elmenus.app.model.Menu
 import com.elmenus.app.ui.menudetails.MenuDetailsActivity
+import com.elmenus.app.utils.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.activity_menus_list.*
 
 
@@ -28,6 +30,7 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_menus_list)
         initData()
+        initListeners()
         initObservables()
 
 
@@ -44,6 +47,18 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
         viewmModel.getMenus(1)
 
 
+    }
+
+    private fun initListeners() {
+        recycler_menus.addOnScrollListener(
+                object : EndlessRecyclerViewScrollListener(recycler_menus.layoutManager as LinearLayoutManager) {
+                    override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                        viewmModel.getMenus(page)
+
+                    }
+
+
+                })
     }
 
     private fun initObservables() {

@@ -9,7 +9,9 @@ import com.elmenus.app.R
 import com.elmenus.app.databinding.MenuItemBinding
 import com.elmenus.app.model.Menu
 
-class MenuAdapter : RecyclerView.Adapter<MenuAdapter.Menuholder>() {
+class MenuAdapter(listener: ItemClickListener) : RecyclerView.Adapter<MenuAdapter.Menuholder>() {
+    var listener: ItemClickListener = listener
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): Menuholder {
         var root = LayoutInflater.from(viewGroup.context).inflate(R.layout.menu_item
@@ -29,11 +31,18 @@ class MenuAdapter : RecyclerView.Adapter<MenuAdapter.Menuholder>() {
     }
 
 
-    class Menuholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+   inner class Menuholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding: MenuItemBinding? = null
 
         init {
             binding = DataBindingUtil.bind(itemView)
+
+            itemView.setOnClickListener {
+                listener.onItemClick( Menu(0, "Burger"
+                        , "https://s3.amazonaws.com/elmenusV3/Photos/Normal/i4g2ehuqrvuw61or.jpg"
+                        , "any thing"),binding?.imageView!!)
+
+            }
         }
 
 

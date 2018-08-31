@@ -10,8 +10,8 @@ data class MenuList(@SerializedName("items") val items: List<Menu>) {
 }
 
 @Entity
-data class Menu(@PrimaryKey @SerializedName("id") val id: Int
-                , @SerializedName("name") val name: String
+data class Menu(@SerializedName("id") val id: Int
+                , @PrimaryKey @SerializedName("name") val name: String
                 , @SerializedName("photoUrl") val photoUrl: String
                 , @SerializedName("description") val description: String) : Serializable {
 }

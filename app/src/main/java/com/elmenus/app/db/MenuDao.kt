@@ -9,8 +9,8 @@ import com.elmenus.app.model.Menu
 
 @Dao
 interface MenuDao {
-    @Query("SELECT * from menu")
-    fun getAllMenus(): List<Menu>
+    @Query("SELECT * from menu where menu.name LIKE :pageNo")
+    fun getAllMenus(pageNo:String): List<Menu>
 
     @Insert(onConflict = REPLACE)
     fun insert(menu: Menu)

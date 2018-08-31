@@ -21,6 +21,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
     var loadMore = ObservableInt(View.GONE)
     var loading = ObservableBoolean(false)
     var menus = MutableLiveData<List<Menu>>()
+    var lastPageNo: Int? = 0
 
 
     fun initData(menuDB: MenuDB) {
@@ -30,6 +31,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
 
     fun getMenus(pageNo: Int) {
         if (pageNo == 1) loading.set(true) else loadMore.set(View.VISIBLE)
+        lastPageNo = pageNo
         WebServiceClient.client.create(BackEndApi::class.java)
                 .getItems(pageNo).enqueue(this)
 
@@ -48,7 +50,8 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
     override fun onFailure(call: Call<MenuList>?, t: Throwable?) {
         loading.set(false)
         loadMore.set(View.GONE)
-        menus.value = menuDB.daoAccess().getAllMenus()
+        //search by page no
+        menus.value = menuDB.daoAccess().getAllMenus("$lastPageNo%")
     }
 
 

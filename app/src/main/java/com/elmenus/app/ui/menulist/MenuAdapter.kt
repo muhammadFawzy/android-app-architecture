@@ -28,9 +28,9 @@ class MenuAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<MenuAd
         holder.binding?.model = menus[position]
     }
 
-    fun addAll(menus: List<Menu>?) {
+    fun addAll(menus: List<Menu>?, currenPage: Int) {
+        if (currenPage == 1) this.menus.clear()
         this.menus.addAll(menus!!)
-        this.menus.distinctBy { it.id }
         notifyDataSetChanged()
 
     }

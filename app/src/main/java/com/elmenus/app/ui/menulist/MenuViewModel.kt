@@ -51,7 +51,10 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
         loading.set(false)
         loadMore.set(View.GONE)
         //search by page no
-        menus.value = menuDB.daoAccess().getAllMenus("$lastPageNo%")
+        var menusStored = menuDB.daoAccess().getAllMenus("$lastPageNo%")
+        menus.value = menusStored
+
+
     }
 
 

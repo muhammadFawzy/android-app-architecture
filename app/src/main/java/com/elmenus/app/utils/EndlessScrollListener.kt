@@ -18,7 +18,7 @@ abstract class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener
     // True if we are still waiting for the last set of data to load.
     private var loading = true
     // Sets the starting page index
-    private val startingPageIndex = 0
+    private val startingPageIndex = 1
 
     internal var mLayoutManager: RecyclerView.LayoutManager
 

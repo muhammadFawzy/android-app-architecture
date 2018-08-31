@@ -19,6 +19,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
     lateinit var menuDB: MenuDB
 
     var loadMore = ObservableInt(View.GONE)
+    var networkError = ObservableInt(View.GONE)
     var loading = ObservableBoolean(false)
     var menus = MutableLiveData<List<Menu>>()
     var lastPageNo: Int? = 0
@@ -41,6 +42,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
     override fun onResponse(call: Call<MenuList>?, response: Response<MenuList>?) {
         loading.set(false)
         loadMore.set(View.GONE)
+        networkError.set(View.GONE)
         if (response?.isSuccessful!!) {
             menuDB.daoAccess().insertAll(response.body().items)
             menus.value = response.body().items
@@ -53,6 +55,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
         //search by page no
         var menusStored = menuDB.daoAccess().getAllMenus("$lastPageNo%")
         menus.value = menusStored
+        if (menusStored.isEmpty() && lastPageNo == 1) networkError.set(View.VISIBLE) else networkError.set(View.GONE)
 
 
     }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableInt
+import android.util.Log
 import android.view.View
 import com.elmenus.app.db.MenuDB
 import com.elmenus.app.model.Menu
@@ -53,7 +54,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
         loading.set(false)
         loadMore.set(View.GONE)
         //search by page no
-        var menusStored = menuDB.daoAccess().getAllMenus("$lastPageNo%")
+        var menusStored = menuDB.daoAccess().getAllMenus("$lastPageNo - %")
         menus.value = menusStored
         if (menusStored.isEmpty() && lastPageNo == 1) networkError.set(View.VISIBLE) else networkError.set(View.GONE)
 

@@ -30,7 +30,6 @@
                 android:fitsSystemWindows="true"
                 android:scaleType="fitXY"
                 android:transitionName="menu_item"
-                android:src="@color/colorAccent"
                 app:layout_collapseMode="parallax"
                 tools:ignore="UnusedAttribute" />
 

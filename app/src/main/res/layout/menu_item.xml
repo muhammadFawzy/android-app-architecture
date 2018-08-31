@@ -25,7 +25,6 @@
             android:layout_height="200dp"
             android:scaleType="fitXY"
             android:transitionName="menu_item"
-            android:src="@color/colorAccent"
             tools:ignore="UnusedAttribute" />
 
         <TextView

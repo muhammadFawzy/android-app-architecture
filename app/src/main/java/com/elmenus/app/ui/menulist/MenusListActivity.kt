@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout.VERTICAL
 import com.elmenus.app.R
 import com.elmenus.app.databinding.ActivityMenusListBinding
+import com.elmenus.app.db.MenuDB
 import com.elmenus.app.model.Menu
 import com.elmenus.app.ui.menudetails.MenuDetailsActivity
 import com.elmenus.app.utils.EndlessRecyclerViewScrollListener
@@ -38,13 +39,14 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
 
 
     private fun initData() {
+        // creating DB
+        val menuDb = MenuDB.getInMemoryDatabase(this)
         viewmModel = ViewModelProviders.of(this).get(MenuViewModel::class.java)
         binding.viewmodel = viewmModel
         adapter = MenuAdapter(this)
         recycler_menus.layoutManager = LinearLayoutManager(this, VERTICAL, false)
         recycler_menus.adapter = adapter
-
-        viewmModel.getMenus(1)
+        viewmModel.initData(menuDb)
 
 
     }

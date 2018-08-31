@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableInt
 import android.view.View
+import com.elmenus.app.db.MenuDB
 import com.elmenus.app.model.Menu
 import com.elmenus.app.model.MenuList
 import mvvm.f4wzy.com.samplelogin.network.BackEndApi
@@ -15,11 +16,17 @@ import retrofit2.Response
 
 class MenuViewModel : ViewModel(), Callback<MenuList> {
 
+    lateinit var menuDB: MenuDB
 
     var loadMore = ObservableInt(View.GONE)
     var loading = ObservableBoolean(false)
     var menus = MutableLiveData<List<Menu>>()
 
+
+    fun initData(menuDB: MenuDB) {
+        this.menuDB = menuDB
+        getMenus(1)
+    }
 
     fun getMenus(pageNo: Int) {
         if (pageNo == 1) loading.set(true) else loadMore.set(View.VISIBLE)
@@ -33,6 +40,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
         loading.set(false)
         loadMore.set(View.GONE)
         if (response?.isSuccessful!!) {
+            menuDB.daoAccess().insertAll(response.body().items)
             menus.value = response.body().items
         }
     }
@@ -40,6 +48,8 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
     override fun onFailure(call: Call<MenuList>?, t: Throwable?) {
         loading.set(false)
         loadMore.set(View.GONE)
+        menus.value = menuDB.daoAccess().getAllMenus()
     }
+
 
 }

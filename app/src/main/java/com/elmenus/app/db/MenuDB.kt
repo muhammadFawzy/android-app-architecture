@@ -16,7 +16,7 @@ abstract class MenuDB : RoomDatabase() {
 
     companion object {
         private var INSTANCE: MenuDB? = null
-        private val DATA_BASE_NAME = "menus"
+        private const val DATA_BASE_NAME = "menus"
         fun getInMemoryDatabase(context: Context): MenuDB {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(context.applicationContext

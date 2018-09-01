@@ -25,7 +25,7 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
 
     private lateinit var adapter: MenuAdapter
     private lateinit var binding: ActivityMenusListBinding
-    lateinit var viewmModel: MenuViewModel
+    lateinit var viewModel: MenuViewModel
     private lateinit var endlessRecyclerViewScrollListener: EndlessRecyclerViewScrollListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,12 +42,15 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
     private fun initData() {
         // creating DB
         val menuDb = MenuDB.getInMemoryDatabase(this)
-        viewmModel = ViewModelProviders.of(this).get(MenuViewModel::class.java)
-        binding.viewmodel = viewmModel
+
+        viewModel = ViewModelProviders.of(this).get(MenuViewModel::class.java)
+        binding.viewmodel = viewModel
+
         adapter = MenuAdapter(this)
         recycler_menus.layoutManager = LinearLayoutManager(this, VERTICAL, false)
         recycler_menus.adapter = adapter
-        viewmModel.initData(menuDb)
+
+        viewModel.initData(menuDb)
 
 
     }
@@ -55,22 +58,21 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
     private fun initListeners() {
         endlessRecyclerViewScrollListener = object : EndlessRecyclerViewScrollListener(recycler_menus.layoutManager as LinearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
-                viewmModel.getMenus(page)
+                viewModel.getMenus(page)
 
             }
-
-
         }
+
         recycler_menus.addOnScrollListener(endlessRecyclerViewScrollListener)
 
         swipeRefresh.setOnRefreshListener {
             endlessRecyclerViewScrollListener.resetState()
-            viewmModel.getMenus(1)
+            viewModel.getMenus(1)
         }
     }
 
     private fun initObservables() {
-        viewmModel.menus.observe(this, Observer { menusWithPage ->
+        viewModel.menus.observe(this, Observer { menusWithPage ->
             adapter.addAll(menusWithPage?.get(menusWithPage.keys.first())
                     , menusWithPage!!.keys.first())
 

@@ -7,11 +7,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.elmenus.app.R
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
+
 /**
- * Created by mf4wzy on 06/01/18.
+ * method for display corner image for imageView using glide.
+ * @param url of image
+ *
  */
-
-
 @BindingAdapter("cornerUrl")
 fun ImageView.setCornerImageUrl(url: String?) {
     val context = this.context
@@ -27,6 +28,11 @@ fun ImageView.setCornerImageUrl(url: String?) {
         }
 }
 
+/**
+ * method for display default image for imageView using glide.
+ * @param url of image
+ *
+ */
 @BindingAdapter("imageUrl")
 fun ImageView.setImageUrl(url: String?) {
     val context = this.context

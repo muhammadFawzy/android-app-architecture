@@ -24,7 +24,11 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
     var menus = MutableLiveData<Map<Int, List<Menu>>>()
     private var lastPageNo: Int? = 0
 
-
+    /**
+     * initialize view model for the first time
+     * @param menuDB fot retrieve data from DB
+     * and call getMenu for loading menu with page no when activity created.
+     */
     fun initData(menuDB: MenuDB) {
         this.menuDB = menuDB
         getMenus(1)
@@ -43,6 +47,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
         loading.set(false)
         loadMore.set(View.GONE)
         networkError.set(View.GONE)
+
         if (response?.isSuccessful!!) {
             menuDB.daoAccess().insertAll(response.body().items)
             menus.value = mapOf(lastPageNo!! to response.body().items)
@@ -52,10 +57,13 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
     override fun onFailure(call: Call<MenuList>?, t: Throwable?) {
         loading.set(false)
         loadMore.set(View.GONE)
-        //search by page no
+
         val menusStored = menuDB.daoAccess().getAllMenus("$lastPageNo - %")
         menus.value = mapOf(lastPageNo!! to menusStored)
-        if (menusStored.isEmpty() && lastPageNo == 1) networkError.set(View.VISIBLE) else networkError.set(View.GONE)
+
+        // if it's page 1 and empty then there are network error
+        if (menusStored.isEmpty() && lastPageNo == 1) networkError.set(View.VISIBLE)
+        else networkError.set(View.GONE)
 
 
     }

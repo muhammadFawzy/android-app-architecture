@@ -28,8 +28,14 @@ class MenuAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<MenuAd
         holder.binding?.model = menus[position]
     }
 
-    fun addAll(menus: List<Menu>?, currenPage: Int) {
-        if (currenPage == 1) this.menus.clear()
+    /**
+     * add menus to the recycler view with considering if it's page 1
+     * then delete all previous data before adding
+     * @param lisOfMenus
+     * @param currentPage
+     */
+    fun addAll(menus: List<Menu>?, currentPage: Int) {
+        if (currentPage == 1) this.menus.clear()
         this.menus.addAll(menus!!)
         notifyDataSetChanged()
 

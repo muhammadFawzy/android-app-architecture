@@ -4,7 +4,6 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableInt
-import android.util.Log
 import android.view.View
 import com.elmenus.app.db.MenuDB
 import com.elmenus.app.model.Menu
@@ -22,7 +21,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
     var loadMore = ObservableInt(View.GONE)
     var networkError = ObservableInt(View.GONE)
     var loading = ObservableBoolean(false)
-    var menus = MutableLiveData<List<Menu>>()
+    var menus = MutableLiveData<Map<Int, List<Menu>>>()
     var lastPageNo: Int? = 0
 
 
@@ -46,7 +45,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
         networkError.set(View.GONE)
         if (response?.isSuccessful!!) {
             menuDB.daoAccess().insertAll(response.body().items)
-            menus.value = response.body().items
+            menus.value = mapOf(lastPageNo!! to response.body().items)
         }
     }
 
@@ -55,7 +54,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
         loadMore.set(View.GONE)
         //search by page no
         var menusStored = menuDB.daoAccess().getAllMenus("$lastPageNo - %")
-        menus.value = menusStored
+        menus.value = mapOf(lastPageNo!! to menusStored)
         if (menusStored.isEmpty() && lastPageNo == 1) networkError.set(View.VISIBLE) else networkError.set(View.GONE)
 
 

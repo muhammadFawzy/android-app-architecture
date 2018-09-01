@@ -26,7 +26,6 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
     lateinit var adapter: MenuAdapter
     lateinit var binding: ActivityMenusListBinding
     lateinit var viewmModel: MenuViewModel
-    var currenPage: Int = 1
     lateinit var endlessRecyclerViewScrollListener: EndlessRecyclerViewScrollListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +55,6 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
     private fun initListeners() {
         endlessRecyclerViewScrollListener = object : EndlessRecyclerViewScrollListener(recycler_menus.layoutManager as LinearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
-                currenPage = page
                 viewmModel.getMenus(page)
 
             }
@@ -67,14 +65,14 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
 
         swipeRefresh.setOnRefreshListener {
             endlessRecyclerViewScrollListener.resetState()
-            currenPage=1
-            viewmModel.getMenus(currenPage)
+            viewmModel.getMenus(1)
         }
     }
 
     private fun initObservables() {
-        viewmModel.menus.observe(this, Observer { menus ->
-            adapter.addAll(menus, currenPage)
+        viewmModel.menus.observe(this, Observer { menusWithPage ->
+            adapter.addAll(menusWithPage?.get(menusWithPage.keys.first())
+                    , menusWithPage!!.keys.first())
 
         })
     }

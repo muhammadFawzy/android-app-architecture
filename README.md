@@ -1,2 +1,12 @@
 # Elmenus
 Display menus for Elmenus
+
+<img src="/screenshots/Screenshot_20180901-183756.png" width="200" height="400" />. <img src="/screenshots/Screenshot_20180901-183824.png" width="200" height="400" />
+
+
+### Prerequisites
+
+ 1. You need to have experience in [Kotlin](https://kotlinlang.org).
+ 2. You need to be familiar with [Android Architecture Components & Live Data](https://developer.android.com/topic/libraries/architecture/).
+ 3. You need to be familiar with [MVVM design pattern](https://en.wikipedia.org/wiki/Model–view–viewmodel).
+ 4. You need to be familiar with [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room).

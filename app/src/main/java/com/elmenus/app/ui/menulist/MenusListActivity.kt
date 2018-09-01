@@ -23,10 +23,10 @@ import kotlinx.android.synthetic.main.activity_menus_list.*
 
 class MenusListActivity : AppCompatActivity(), ItemClickListener {
 
-    lateinit var adapter: MenuAdapter
-    lateinit var binding: ActivityMenusListBinding
+    private lateinit var adapter: MenuAdapter
+    private lateinit var binding: ActivityMenusListBinding
     lateinit var viewmModel: MenuViewModel
-    lateinit var endlessRecyclerViewScrollListener: EndlessRecyclerViewScrollListener
+    private lateinit var endlessRecyclerViewScrollListener: EndlessRecyclerViewScrollListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

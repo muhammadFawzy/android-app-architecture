@@ -16,13 +16,13 @@ import retrofit2.Response
 
 class MenuViewModel : ViewModel(), Callback<MenuList> {
 
-    lateinit var menuDB: MenuDB
+    private lateinit var menuDB: MenuDB
 
     var loadMore = ObservableInt(View.GONE)
     var networkError = ObservableInt(View.GONE)
     var loading = ObservableBoolean(false)
     var menus = MutableLiveData<Map<Int, List<Menu>>>()
-    var lastPageNo: Int? = 0
+    private var lastPageNo: Int? = 0
 
 
     fun initData(menuDB: MenuDB) {
@@ -53,7 +53,7 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
         loading.set(false)
         loadMore.set(View.GONE)
         //search by page no
-        var menusStored = menuDB.daoAccess().getAllMenus("$lastPageNo - %")
+        val menusStored = menuDB.daoAccess().getAllMenus("$lastPageNo - %")
         menus.value = mapOf(lastPageNo!! to menusStored)
         if (menusStored.isEmpty() && lastPageNo == 1) networkError.set(View.VISIBLE) else networkError.set(View.GONE)
 

@@ -33,4 +33,11 @@ interface MenuDao {
 
     @Insert(onConflict = REPLACE)
     fun insertAll(menus: List<Menu>)
+
+    /**
+     * Delete all data
+     */
+
+    @Query("DELETE FROM menu")
+    fun deleteAllData()
 }

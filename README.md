@@ -1,5 +1,5 @@
-# Elmenus
-Display menus for Elmenus
+# Menus
+Display menus using Room Persistence Library With Kotlin
 
 <img src="/screenshots/Screenshot_20180901-183756.png" width="200" height="400" /> <img src="/screenshots/Screenshot_20180901-183824.png" width="200" height="400" />
 

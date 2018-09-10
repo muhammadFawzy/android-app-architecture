@@ -15,6 +15,5 @@ Display menus for Elmenus
 
  using Espresso and junit4 test
 
- there is a file called MenusTest
-  /app/src/androidTest/java/com/elmenus/app/MenusTest.kt
+ there is a file called [MenusTest](/app/src/androidTest/java/com/elmenus/app/MenusTest.kt)
 

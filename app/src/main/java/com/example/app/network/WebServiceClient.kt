@@ -1,4 +1,4 @@
-package mvvm.f4wzy.com.samplelogin.network
+package com.example.app.network
 
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient

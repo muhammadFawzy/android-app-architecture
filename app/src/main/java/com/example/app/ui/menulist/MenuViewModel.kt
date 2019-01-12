@@ -8,8 +8,8 @@ import android.view.View
 import com.example.app.db.MenuDB
 import com.example.app.model.Menu
 import com.example.app.model.MenuList
-import mvvm.f4wzy.com.samplelogin.network.BackEndApi
-import mvvm.f4wzy.com.samplelogin.network.WebServiceClient
+import com.example.app.network.BackEndApi
+import com.example.app.network.WebServiceClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

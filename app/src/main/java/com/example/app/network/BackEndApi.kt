@@ -1,4 +1,4 @@
-package mvvm.f4wzy.com.samplelogin.network
+package com.example.app.network
 
 import com.example.app.model.MenuList
 import retrofit2.Call

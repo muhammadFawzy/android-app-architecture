@@ -10,7 +10,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.elmenus.app"
+        applicationId "com.example.app"
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1

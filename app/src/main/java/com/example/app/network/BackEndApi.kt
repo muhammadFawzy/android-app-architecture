@@ -1,6 +1,6 @@
 package mvvm.f4wzy.com.samplelogin.network
 
-import com.elmenus.app.model.MenuList
+import com.example.app.model.MenuList
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

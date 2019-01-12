@@ -1,4 +1,4 @@
-package com.elmenus.app.ui.menulist
+package com.example.app.ui.menulist
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -12,12 +12,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout.VERTICAL
-import com.elmenus.app.R
-import com.elmenus.app.databinding.ActivityMenusListBinding
-import com.elmenus.app.db.MenuDB
-import com.elmenus.app.model.Menu
-import com.elmenus.app.ui.menudetails.MenuDetailsActivity
-import com.elmenus.app.utils.EndlessRecyclerViewScrollListener
+import com.example.app.R
+import com.example.app.databinding.ActivityMenusListBinding
+import com.example.app.db.MenuDB
+import com.example.app.model.Menu
+import com.example.app.ui.menudetails.MenuDetailsActivity
+import com.example.app.utils.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.activity_menus_list.*
 
 

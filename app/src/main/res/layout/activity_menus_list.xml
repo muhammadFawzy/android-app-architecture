@@ -8,7 +8,7 @@
 
         <variable
             name="viewmodel"
-            type="com.elmenus.app.ui.menulist.MenuViewModel" />
+            type="com.example.app.ui.menulist.MenuViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

@@ -1,7 +1,7 @@
-package com.elmenus.app.ui.menulist
+package com.example.app.ui.menulist
 
 import android.widget.ImageView
-import com.elmenus.app.model.Menu
+import com.example.app.model.Menu
 
 
 interface ItemClickListener {

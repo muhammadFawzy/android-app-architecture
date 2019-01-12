@@ -1,13 +1,13 @@
-package com.elmenus.app.ui.menudetails
+package com.example.app.ui.menudetails
 
 import android.databinding.DataBindingUtil
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.app.AppCompatActivity
-import com.elmenus.app.R
-import com.elmenus.app.databinding.ActivityMenuDetailsBinding
-import com.elmenus.app.model.Menu
+import com.example.app.R
+import com.example.app.databinding.ActivityMenuDetailsBinding
+import com.example.app.model.Menu
 
 class MenuDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuDetailsBinding

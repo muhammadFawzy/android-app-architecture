@@ -1,13 +1,13 @@
-package com.elmenus.app.ui.menulist
+package com.example.app.ui.menulist
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.elmenus.app.R
-import com.elmenus.app.databinding.MenuItemBinding
-import com.elmenus.app.model.Menu
+import com.example.app.R
+import com.example.app.databinding.MenuItemBinding
+import com.example.app.model.Menu
 
 class MenuAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<MenuAdapter.Menuholder>() {
     var menus = arrayListOf<Menu>()

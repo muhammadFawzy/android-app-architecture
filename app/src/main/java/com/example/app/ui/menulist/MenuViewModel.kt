@@ -1,13 +1,13 @@
-package com.elmenus.app.ui.menulist
+package com.example.app.ui.menulist
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableInt
 import android.view.View
-import com.elmenus.app.db.MenuDB
-import com.elmenus.app.model.Menu
-import com.elmenus.app.model.MenuList
+import com.example.app.db.MenuDB
+import com.example.app.model.Menu
+import com.example.app.model.MenuList
 import mvvm.f4wzy.com.samplelogin.network.BackEndApi
 import mvvm.f4wzy.com.samplelogin.network.WebServiceClient
 import retrofit2.Call

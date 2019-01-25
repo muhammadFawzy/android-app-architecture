@@ -5,6 +5,4 @@ import retrofit2.Call
 
 interface MenusDataSource {
     fun getAllMenus(pageNo: Int): Call<MenuList>
-
-    fun getMenuDetails(id: Int)
 }

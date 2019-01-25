@@ -1,4 +1,4 @@
-package com.example.app.network
+package com.example.app.data.source.remote
 
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient

@@ -22,11 +22,7 @@ class MenuViewModel(private val menuDB: MenuDB, private val getMenusUseCase: Get
     var menus = MutableLiveData<Map<Int, List<Menu>>>()
     private var lastPageNo: Int? = 0
 
-    /**
-     * initialize view model for the first time
-     * @param menuDB fot retrieve data from DB
-     * and call getMenu for loading menu with page no when activity created.
-     */
+
     init {
         getMenus(1)
     }
@@ -58,9 +54,5 @@ class MenuViewModel(private val menuDB: MenuDB, private val getMenusUseCase: Get
         // if it's page 1 and empty then there are network error
         if (menusStored.isEmpty() && lastPageNo == 1) networkError.set(View.VISIBLE)
         else networkError.set(View.GONE)
-
-
     }
-
-
 }

@@ -74,7 +74,7 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
 
     override fun onItemClick(menu: Menu, shared: ImageView) {
         val intent = Intent(this, MenuDetailsActivity::class.java)
-        intent.putExtra("item", menu)
+        intent.putExtra(MenuDetailsActivity.ITEM_EXTRA, menu)
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this
                 , shared as View, "menu_item")
         startActivity(intent, options.toBundle())

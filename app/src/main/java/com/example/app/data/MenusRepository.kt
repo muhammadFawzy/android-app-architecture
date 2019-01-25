@@ -8,8 +8,4 @@ class MenusRepository : MenusDataSource {
     private val remoteDataSource by lazy { MenusRemoteDataSource() }
 
     override fun getAllMenus(pageNo: Int) = remoteDataSource.getAllMenus(pageNo)
-
-    override fun getMenuDetails(id: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

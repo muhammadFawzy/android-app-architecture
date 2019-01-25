@@ -1,4 +1,4 @@
-package com.example.app.network
+package com.example.app.data.source.remote
 
 import com.example.app.domain.entity.MenuList
 import retrofit2.Call

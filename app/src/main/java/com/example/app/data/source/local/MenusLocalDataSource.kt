@@ -8,8 +8,4 @@ class MenusLocalDataSource : MenusDataSource {
     override fun getAllMenus(pageNo: Int): Call<MenuList> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-    override fun getMenuDetails(id: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

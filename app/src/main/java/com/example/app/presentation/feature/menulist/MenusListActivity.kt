@@ -13,7 +13,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout.VERTICAL
 import com.example.app.R
-import com.example.app.data.source.local.MenuDB
 import com.example.app.databinding.ActivityMenusListBinding
 import com.example.app.domain.entity.Menu
 import com.example.app.presentation.feature.menudetails.MenuDetailsActivity
@@ -38,10 +37,7 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
 
 
     private fun initData() {
-        // creating DB
-        val menuDb = MenuDB.getInMemoryDatabase(this)
-
-        viewModel = ViewModelProviders.of(this, ViewModelFactory(menuDb)).get(MenuViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ViewModelFactory()).get(MenuViewModel::class.java)
         binding.viewmodel = viewModel
 
         adapter = MenuAdapter(this)

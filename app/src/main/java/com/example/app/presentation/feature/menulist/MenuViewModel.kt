@@ -33,12 +33,12 @@ class MenuViewModel(private val menuDB: MenuDB, private val getMenusUseCase: Get
         getMenusUseCase.getAllMenus(pageNo).enqueue(this)
     }
 
-    override fun onResponse(call: Call<MenuList>?, response: Response<MenuList>?) {
+    override fun onResponse(call: Call<MenuList>?, response: Response<MenuList>) {
         loading.set(false)
         loadMore.set(View.GONE)
         networkError.set(View.GONE)
 
-        if (response?.isSuccessful!!) {
+        if (response.isSuccessful) {
             menuDB.daoAccess().insertAll(response.body().items)
             menus.value = mapOf(lastPageNo!! to response.body().items)
         }

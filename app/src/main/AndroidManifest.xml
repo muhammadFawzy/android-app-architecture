@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name="com.example.app.ui.menulist.MenusListActivity"
+            android:name="com.example.app.presentation.feature.menulist.MenusListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.app.ui.menudetails.MenuDetailsActivity"
+            android:name="com.example.app.presentation.feature.menudetails.MenuDetailsActivity"
             android:configChanges="orientation|keyboardHidden" />
     </application>
 

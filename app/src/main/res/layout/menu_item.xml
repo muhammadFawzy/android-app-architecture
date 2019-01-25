@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.example.app.model.Menu" />
+            type="com.example.app.domain.entity.Menu" />
     </data>
 
     <android.support.constraint.ConstraintLayout

@@ -1,7 +1,7 @@
-package com.example.app.ui.menulist
+package com.example.app.presentation.feature.menulist
 
 import android.widget.ImageView
-import com.example.app.model.Menu
+import com.example.app.domain.entity.Menu
 
 
 interface ItemClickListener {

@@ -1,22 +1,20 @@
-package com.example.app.ui.menulist
+package com.example.app.presentation.feature.menulist
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableInt
 import android.view.View
-import com.example.app.db.MenuDB
-import com.example.app.model.Menu
-import com.example.app.model.MenuList
-import com.example.app.network.BackEndApi
-import com.example.app.network.WebServiceClient
+import com.example.app.data.source.local.MenuDB
+import com.example.app.domain.entity.Menu
+import com.example.app.domain.entity.MenuList
+import com.example.app.domain.usecase.GetMenusUseCase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MenuViewModel : ViewModel(), Callback<MenuList> {
+class MenuViewModel(private val menuDB: MenuDB, private val getMenusUseCase: GetMenusUseCase) : ViewModel(), Callback<MenuList> {
 
-    private lateinit var menuDB: MenuDB
 
     var loadMore = ObservableInt(View.GONE)
     var networkError = ObservableInt(View.GONE)
@@ -29,18 +27,14 @@ class MenuViewModel : ViewModel(), Callback<MenuList> {
      * @param menuDB fot retrieve data from DB
      * and call getMenu for loading menu with page no when activity created.
      */
-    fun initData(menuDB: MenuDB) {
-        this.menuDB = menuDB
+    init {
         getMenus(1)
     }
 
     fun getMenus(pageNo: Int) {
         if (pageNo == 1) loading.set(true) else loadMore.set(View.VISIBLE)
         lastPageNo = pageNo
-        WebServiceClient.client.create(BackEndApi::class.java)
-                .getItems(pageNo).enqueue(this)
-
-
+        getMenusUseCase.getAllMenus(pageNo).enqueue(this)
     }
 
     override fun onResponse(call: Call<MenuList>?, response: Response<MenuList>?) {

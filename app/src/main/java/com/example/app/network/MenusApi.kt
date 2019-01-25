@@ -1,12 +1,12 @@
 package com.example.app.network
 
-import com.example.app.model.MenuList
+import com.example.app.domain.entity.MenuList
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
 
-interface BackEndApi {
+interface MenusApi {
 
     @Headers("Content-Type: application/json")
     @GET("/items/{page}")

@@ -8,13 +8,13 @@
 
         <variable
             name="viewmodel"
-            type="com.example.app.ui.menulist.MenuViewModel" />
+            type="com.example.app.presentation.feature.menulist.MenuViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.menulist.MenusListActivity">
+        tools:context=".presentation.feature.menulist.MenusListActivity">
 
 
         <android.support.v4.widget.SwipeRefreshLayout
@@ -46,10 +46,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:drawableTop="@drawable/ic_cloud_of"
             android:text="@string/network_error"
             android:textColor="#000"

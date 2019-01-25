@@ -1,4 +1,4 @@
-package com.example.app.ui.menulist
+package com.example.app.presentation.feature.menulist
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -13,10 +13,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout.VERTICAL
 import com.example.app.R
+import com.example.app.data.source.local.MenuDB
 import com.example.app.databinding.ActivityMenusListBinding
-import com.example.app.db.MenuDB
-import com.example.app.model.Menu
-import com.example.app.ui.menudetails.MenuDetailsActivity
+import com.example.app.domain.entity.Menu
+import com.example.app.presentation.feature.menudetails.MenuDetailsActivity
 import com.example.app.utils.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.activity_menus_list.*
 
@@ -34,8 +34,6 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
         initData()
         initListeners()
         initObservables()
-
-
     }
 
 
@@ -43,16 +41,12 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
         // creating DB
         val menuDb = MenuDB.getInMemoryDatabase(this)
 
-        viewModel = ViewModelProviders.of(this).get(MenuViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ViewModelFactory(menuDb)).get(MenuViewModel::class.java)
         binding.viewmodel = viewModel
 
         adapter = MenuAdapter(this)
         recycler_menus.layoutManager = LinearLayoutManager(this, VERTICAL, false)
         recycler_menus.adapter = adapter
-
-        viewModel.initData(menuDb)
-
-
     }
 
     private fun initListeners() {
@@ -75,7 +69,6 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
         viewModel.menus.observe(this, Observer { menusWithPage ->
             adapter.addAll(menusWithPage?.get(menusWithPage.keys.first())
                     , menusWithPage!!.keys.first())
-
         })
     }
 
@@ -85,7 +78,6 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this
                 , shared as View, "menu_item")
         startActivity(intent, options.toBundle())
-
     }
 
 

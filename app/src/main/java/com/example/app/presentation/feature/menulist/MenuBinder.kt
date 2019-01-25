@@ -1,4 +1,4 @@
-package com.example.app.ui.menulist
+package com.example.app.presentation.feature.menulist
 
 import android.databinding.BindingAdapter
 import android.widget.ImageView

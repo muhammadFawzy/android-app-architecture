@@ -1,4 +1,4 @@
-package com.example.app.ui.menudetails
+package com.example.app.presentation.feature.menudetails
 
 import android.databinding.DataBindingUtil
 import android.graphics.Color
@@ -7,7 +7,7 @@ import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.app.AppCompatActivity
 import com.example.app.R
 import com.example.app.databinding.ActivityMenuDetailsBinding
-import com.example.app.model.Menu
+import com.example.app.domain.entity.Menu
 
 class MenuDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuDetailsBinding

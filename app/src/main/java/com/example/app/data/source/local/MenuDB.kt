@@ -1,10 +1,10 @@
-package com.example.app.db
+package com.example.app.data.source.local
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import com.example.app.model.Menu
+import com.example.app.domain.entity.Menu
 
 
 @Database(entities = [Menu::class], version = 1, exportSchema = false)

@@ -9,7 +9,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-object WebServiceClient {
+object RetrofitClient {
     private var retrofit: Retrofit? = null
 
     val client: Retrofit
@@ -27,7 +27,7 @@ object WebServiceClient {
 
         }
 
-    fun getHttpClient(): OkHttpClient? {
+    private fun getHttpClient(): OkHttpClient? {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder()

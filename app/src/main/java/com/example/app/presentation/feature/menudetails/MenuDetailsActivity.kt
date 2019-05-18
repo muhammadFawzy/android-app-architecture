@@ -1,13 +1,13 @@
 package com.example.app.presentation.feature.menudetails
 
-import android.databinding.DataBindingUtil
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.CollapsingToolbarLayout
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.example.app.R
 import com.example.app.databinding.ActivityMenuDetailsBinding
 import com.example.app.domain.entity.Menu
+import com.google.android.material.appbar.CollapsingToolbarLayout
 
 class MenuDetailsActivity : AppCompatActivity() {
     companion object {

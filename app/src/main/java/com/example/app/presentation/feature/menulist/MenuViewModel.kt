@@ -1,10 +1,10 @@
 package com.example.app.presentation.feature.menulist
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableInt
 import android.view.View
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableInt
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.app.domain.entity.Menu
 import com.example.app.domain.entity.MenuList
 import com.example.app.domain.usecase.GetMenusUseCase
@@ -38,7 +38,7 @@ class MenuViewModel(private val getMenusUseCase: GetMenusUseCase) : ViewModel(),
         networkError.set(View.GONE)
 
         if (response.isSuccessful)
-            menus.value = mapOf(lastPageNo!! to response.body().items)
+            menus.value = mapOf(lastPageNo!! to response.body()!!.items)
     }
 
     override fun onFailure(call: Call<MenuList>?, t: Throwable?) {

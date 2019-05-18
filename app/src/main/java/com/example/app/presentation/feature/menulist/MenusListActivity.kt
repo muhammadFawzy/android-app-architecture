@@ -1,17 +1,15 @@
 package com.example.app.presentation.feature.menulist
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout.VERTICAL
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.app.R
 import com.example.app.databinding.ActivityMenusListBinding
 import com.example.app.domain.entity.Menu
@@ -41,13 +39,13 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
         binding.viewmodel = viewModel
 
         adapter = MenuAdapter(this)
-        recycler_menus.layoutManager = LinearLayoutManager(this, VERTICAL, false)
+        recycler_menus.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this, VERTICAL, false)
         recycler_menus.adapter = adapter
     }
 
     private fun initListeners() {
-        endlessRecyclerViewScrollListener = object : EndlessRecyclerViewScrollListener(recycler_menus.layoutManager as LinearLayoutManager) {
-            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+        endlessRecyclerViewScrollListener = object : EndlessRecyclerViewScrollListener(recycler_menus.layoutManager as androidx.recyclerview.widget.LinearLayoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: androidx.recyclerview.widget.RecyclerView) {
                 viewModel.getMenus(page)
 
             }

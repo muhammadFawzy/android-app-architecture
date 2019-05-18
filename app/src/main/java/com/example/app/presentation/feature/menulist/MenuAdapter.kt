@@ -1,15 +1,14 @@
 package com.example.app.presentation.feature.menulist
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.app.R
 import com.example.app.databinding.MenuItemBinding
 import com.example.app.domain.entity.Menu
 
-class MenuAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<MenuAdapter.Menuholder>() {
+class MenuAdapter(var listener: ItemClickListener) : androidx.recyclerview.widget.RecyclerView.Adapter<MenuAdapter.Menuholder>() {
     var menus = arrayListOf<Menu>()
 
 
@@ -42,7 +41,7 @@ class MenuAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<MenuAd
     }
 
 
-    inner class Menuholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class Menuholder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         var binding: MenuItemBinding? = null
 
         init {

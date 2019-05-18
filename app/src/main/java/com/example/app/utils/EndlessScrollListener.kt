@@ -1,12 +1,7 @@
 package com.example.app.utils
 
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 
-
-abstract class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener {
+abstract class EndlessRecyclerViewScrollListener : androidx.recyclerview.widget.RecyclerView.OnScrollListener {
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private var visibleThreshold = 5
@@ -19,18 +14,18 @@ abstract class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener
     // Sets the starting page index
     private val startingPageIndex = 1
 
-    internal var mLayoutManager: RecyclerView.LayoutManager
+    internal var mLayoutManager: androidx.recyclerview.widget.RecyclerView.LayoutManager
 
-    constructor(layoutManager: LinearLayoutManager) {
+    constructor(layoutManager: androidx.recyclerview.widget.LinearLayoutManager) {
         this.mLayoutManager = layoutManager
     }
 
-    constructor(layoutManager: GridLayoutManager) {
+    constructor(layoutManager: androidx.recyclerview.widget.GridLayoutManager) {
         this.mLayoutManager = layoutManager
         visibleThreshold = visibleThreshold * layoutManager.spanCount
     }
 
-    constructor(layoutManager: StaggeredGridLayoutManager) {
+    constructor(layoutManager: androidx.recyclerview.widget.StaggeredGridLayoutManager) {
         this.mLayoutManager = layoutManager
         visibleThreshold = visibleThreshold * layoutManager.spanCount
     }
@@ -50,18 +45,18 @@ abstract class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener
     // This happens many times a second during a scroll, so be wary of the code you place here.
     // We are given a few useful parameters to help us work out if we need to load some more data,
     // but first we check if we are waiting for the previous load to finish.
-    override fun onScrolled(view: RecyclerView, dx: Int, dy: Int) {
+    override fun onScrolled(view: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
         var lastVisibleItemPosition = 0
         val totalItemCount = mLayoutManager.itemCount
 
-        if (mLayoutManager is StaggeredGridLayoutManager) {
-            val lastVisibleItemPositions = (mLayoutManager as StaggeredGridLayoutManager).findLastVisibleItemPositions(null)
+        if (mLayoutManager is androidx.recyclerview.widget.StaggeredGridLayoutManager) {
+            val lastVisibleItemPositions = (mLayoutManager as androidx.recyclerview.widget.StaggeredGridLayoutManager).findLastVisibleItemPositions(null)
             // get maximum element within the list
             lastVisibleItemPosition = getLastVisibleItem(lastVisibleItemPositions)
-        } else if (mLayoutManager is GridLayoutManager) {
-            lastVisibleItemPosition = (mLayoutManager as GridLayoutManager).findLastVisibleItemPosition()
-        } else if (mLayoutManager is LinearLayoutManager) {
-            lastVisibleItemPosition = (mLayoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+        } else if (mLayoutManager is androidx.recyclerview.widget.GridLayoutManager) {
+            lastVisibleItemPosition = (mLayoutManager as androidx.recyclerview.widget.GridLayoutManager).findLastVisibleItemPosition()
+        } else if (mLayoutManager is androidx.recyclerview.widget.LinearLayoutManager) {
+            lastVisibleItemPosition = (mLayoutManager as androidx.recyclerview.widget.LinearLayoutManager).findLastVisibleItemPosition()
         }
 
         // If the total item count is zero and the previous isn't, assume the
@@ -100,6 +95,6 @@ abstract class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener
     }
 
     // Defines the process for actually loading more data based on page
-    abstract fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView)
+    abstract fun onLoadMore(page: Int, totalItemsCount: Int, view: androidx.recyclerview.widget.RecyclerView)
 
 }

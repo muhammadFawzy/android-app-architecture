@@ -63,8 +63,4 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:3.3.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
-    //room DB
-    implementation 'androidx.room:room-runtime:2.0.0'
-    kapt 'androidx.room:room-compiler:2.0.0'
-
 }

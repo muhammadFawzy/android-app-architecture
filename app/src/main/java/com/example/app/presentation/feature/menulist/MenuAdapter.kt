@@ -1,21 +1,19 @@
 package com.example.app.presentation.feature.menulist
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import com.example.app.R
-import com.example.app.databinding.MenuItemBinding
 import com.example.app.domain.entity.Menu
+import kotlinx.android.synthetic.main.menu_item.*
 
-class MenuAdapter(var listener: ItemClickListener) : androidx.recyclerview.widget.RecyclerView.Adapter<MenuAdapter.Menuholder>() {
+class MenuAdapter(var listener: ItemClickListener) : androidx.recyclerview.widget.RecyclerView.Adapter<MenuHolder>() {
     var menus = arrayListOf<Menu>()
 
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): Menuholder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): MenuHolder {
         val root = LayoutInflater.from(viewGroup.context).inflate(R.layout.menu_item
                 , viewGroup, false)
-        return Menuholder(root)
+        return MenuHolder(root)
 
     }
 
@@ -23,8 +21,10 @@ class MenuAdapter(var listener: ItemClickListener) : androidx.recyclerview.widge
         return menus.size
     }
 
-    override fun onBindViewHolder(holder: Menuholder, position: Int) {
-        holder.binding?.model = menus[position]
+    override fun onBindViewHolder(holder: MenuHolder, position: Int) {
+        val menu = menus[position]
+        holder.bind(menu)
+        holder.containerView.setOnClickListener { listener.onItemClick(menu, holder.ivImg) }
     }
 
     /**
@@ -33,26 +33,10 @@ class MenuAdapter(var listener: ItemClickListener) : androidx.recyclerview.widge
      * @param lisOfMenus
      * @param currentPage
      */
-    fun addAll(menus: List<Menu>?, currentPage: Int) {
+    fun addAll(menus: List<Menu>, currentPage: Int) {
         if (currentPage == 1) this.menus.clear()
-        this.menus.addAll(menus!!)
+        this.menus.addAll(menus)
         notifyDataSetChanged()
-
-    }
-
-
-    inner class Menuholder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
-        var binding: MenuItemBinding? = null
-
-        init {
-            binding = DataBindingUtil.bind(itemView)
-
-            itemView.setOnClickListener {
-                listener.onItemClick(menus[adapterPosition], binding?.imageView!!)
-
-            }
-        }
-
 
     }
 }

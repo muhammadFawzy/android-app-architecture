@@ -28,6 +28,7 @@
         <activity
             android:name="com.example.app.presentation.feature.menudetails.MenuDetailsActivity"
             android:configChanges="orientation|keyboardHidden" />
+        <activity android:name=".presentation.feature.menulist.NonTestableActivity" />
     </application>
 
 </manifest>

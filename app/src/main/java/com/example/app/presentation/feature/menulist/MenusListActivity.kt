@@ -50,7 +50,7 @@ class MenusListActivity : AppCompatActivity(), ItemClickListener {
 
         swipeRefresh.setOnRefreshListener {
             endlessRecyclerViewScrollListener.resetState()
-            viewModel.getMenus(1)
+            viewModel.getMenus()
         }
     }
 

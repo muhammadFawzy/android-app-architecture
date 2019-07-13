@@ -22,10 +22,10 @@ class MenuViewModel(private val getMenusUseCase: GetMenusUseCase = GetMenusUseCa
     private var lastPageNo: Int = 0
 
     init {
-        getMenus(1)
+        getMenus()
     }
 
-    fun getMenus(pageNo: Int) {
+    fun getMenus(pageNo: Int = 1) {
         if (pageNo == 1) loading.value = true else loadMore.value = View.VISIBLE
         lastPageNo = pageNo
         getMenusUseCase.getAllMenus(pageNo).enqueue(this)

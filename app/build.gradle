@@ -16,6 +16,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testOptions {
+            unitTests.returnDefaultValues = true
+        }
     }
     buildTypes {
         release {
@@ -38,6 +41,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     testImplementation "junit:junit:$junitVersion"
+    testImplementation 'android.arch.core:core-testing:1.1.1'
+
 
     //network layer
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
